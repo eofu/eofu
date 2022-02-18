@@ -1,0 +1,9 @@
+{
+  "properties": [
+    {
+      "name": "websocket.server.port",
+      "type": "java.lang.String",
+      "description": ""
+    }
+  ]
+}
