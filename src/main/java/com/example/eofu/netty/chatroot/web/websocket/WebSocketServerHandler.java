@@ -21,12 +21,14 @@ public class WebSocketServerHandler extends SimpleChannelInboundHandler<WebSocke
     
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, WebSocketFrame msg) throws Exception {
-    
+        handlerWebSocketFrame(ctx, msg);
     }
     
     private void handlerWebSocketFrame(ChannelHandlerContext ctx, WebSocketFrame frame) {
         if (frame instanceof CloseWebSocketFrame) {
-            WebSocketServerHandshaker handshaker = Constant.webSocketHandshakerMap.get(ctx.channel().id().asLongText());
+            WebSocketServerHandshaker handshaker = Constant.webSocketHandshakerMap.get(ctx.channel()
+                                                                                          .id()
+                                                                                          .asLongText());
             if (handshaker == null) {
                 sendErrorMessage(ctx, "不存在的客户端连接！");
             } else {
@@ -37,7 +39,9 @@ public class WebSocketServerHandler extends SimpleChannelInboundHandler<WebSocke
         
         // ping请求
         if (frame instanceof PingWebSocketFrame) {
-            ctx.channel().write(new PongWebSocketFrame(frame.content().retain()));
+            ctx.channel()
+               .write(new PongWebSocketFrame(frame.content()
+                                                  .retain()));
             return;
         }
         
@@ -85,8 +89,10 @@ public class WebSocketServerHandler extends SimpleChannelInboundHandler<WebSocke
     }
     
     private void sendErrorMessage(ChannelHandlerContext ctx, String errorMsg) {
-        String responseJson = new ResponseJson().error(errorMsg).toString();
-        ctx.channel().writeAndFlush(new TextWebSocketFrame(responseJson));
+        String responseJson = new ResponseJson().error(errorMsg)
+                                                .toString();
+        ctx.channel()
+           .writeAndFlush(new TextWebSocketFrame(responseJson));
     }
     
     @Override

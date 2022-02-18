@@ -16,4 +16,11 @@ public class UserInfo {
     private String avatarUrl;
     private List<UserInfo> friendList;
     private List<GroupInfo> groupList;
+    
+    public UserInfo(String userId, String username, String password, String avatarUrl) {
+        this.userId = userId;
+        this.username = username;
+        this.password = password;
+        this.avatarUrl = avatarUrl;
+    }
 }

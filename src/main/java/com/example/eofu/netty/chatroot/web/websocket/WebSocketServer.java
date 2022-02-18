@@ -60,6 +60,9 @@ public class WebSocketServer implements Runnable {
             serverChannelFuture = serverBootstrap.bind(port)
                                                  .sync();
         } catch (InterruptedException e) {
+            log.info(e.getMessage());
+            bossGroup.shutdownGracefully();
+            workerGroup.shutdownGracefully();
             e.printStackTrace();
         }
     }

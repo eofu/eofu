@@ -1,5 +1,7 @@
 package com.example.eofu.netty.chatroot.common;
 
+import com.example.eofu.netty.chatroot.dao.GroupInfoDao;
+import com.example.eofu.netty.chatroot.dao.UserInfoDao;
 import com.example.eofu.netty.chatroot.web.websocket.WebSocketServer;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +16,11 @@ public class AppContext {
     @Autowired
     private WebSocketServer webSocketServer;
     
+    @Autowired
+    private UserInfoDao userInfoDao;
+    @Autowired
+    private GroupInfoDao groupDao;
+    
     private Thread nettyThread;
     
     @PostConstruct
@@ -21,18 +28,18 @@ public class AppContext {
         nettyThread = new Thread(webSocketServer);
         log.info("开启独立线程，启动Netty WebSocket服务器...");
         nettyThread.start();
-        // log.info("加载用户数据...");
-        // userInfoDao.loadUserInfo();
-        // log.info("加载用户交流群数据...");
-        // groupDao.loadGroupInfo();
+        log.info("加载用户数据...");
+        userInfoDao.loadUserInfo();
+        log.info("加载用户交流群数据...");
+        groupDao.loadGroupInfo();
     }
     
     @PreDestroy
     public void close() {
-        // log.info("正在释放Netty Websocket相关连接...");
-        // webSocketServer.close();
-        // log.info("正在关闭Netty Websocket服务器线程...");
-        // nettyThread.stop();
-        // log.info("系统成功关闭！");
+        log.info("正在释放Netty Websocket相关连接...");
+        webSocketServer.close();
+        log.info("正在关闭Netty Websocket服务器线程...");
+        nettyThread.stop();
+        log.info("系统成功关闭！");
     }
 }
