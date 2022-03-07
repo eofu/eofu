@@ -12,10 +12,8 @@ import io.netty.handler.codec.http.*;
 import io.netty.handler.codec.http.websocketx.WebSocketFrame;
 import io.netty.handler.codec.http.websocketx.WebSocketServerHandshaker;
 import io.netty.handler.codec.http.websocketx.WebSocketServerHandshakerFactory;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 
-import java.nio.Buffer;
 import java.nio.charset.StandardCharsets;
 
 @Controller
@@ -31,14 +29,17 @@ public class HttpRequestHandler extends SimpleChannelInboundHandler<Object> {
     }
     
     public void handlerHttpRequest(ChannelHandlerContext ctx, FullHttpRequest req) {
-        if (!req.decoderResult().isSuccess()) {
+        if (!req.decoderResult()
+                .isSuccess()) {
             sendHttpResponse(ctx, req, new DefaultFullHttpResponse(HttpVersion.HTTP_1_1, HttpResponseStatus.BAD_REQUEST));
             return;
         }
         
         WebSocketServerHandshakerFactory wsFactory = new WebSocketServerHandshakerFactory("ws:/" + ctx.channel() + "/websocket", null, false);
         WebSocketServerHandshaker handshaker = wsFactory.newHandshaker(req);
-        Constant.webSocketHandshakerMap.put(ctx.channel().id().asLongText(), handshaker);
+        Constant.webSocketHandshakerMap.put(ctx.channel()
+                                               .id()
+                                               .asLongText(), handshaker);
         
         if (handshaker == null) {
             WebSocketServerHandshakerFactory.sendUnsupportedVersionResponse(ctx.channel());
@@ -48,14 +49,18 @@ public class HttpRequestHandler extends SimpleChannelInboundHandler<Object> {
     }
     
     public void sendHttpResponse(ChannelHandlerContext ctx, FullHttpRequest req, DefaultFullHttpResponse res) {
-        if (res.status().code() != 200) {
-            ByteBuf buf = Unpooled.copiedBuffer(res.status().toString(), StandardCharsets.UTF_8);
-            res.content().writeBytes(buf);
+        if (res.status()
+               .code() != 200) {
+            ByteBuf buf = Unpooled.copiedBuffer(res.status()
+                                                   .toString(), StandardCharsets.UTF_8);
+            res.content()
+               .writeBytes(buf);
             buf.release();
         }
         
         boolean keepAlive = HttpUtil.isKeepAlive(req);
-        ChannelFuture f = ctx.channel().writeAndFlush(res);
+        ChannelFuture f = ctx.channel()
+                             .writeAndFlush(res);
         if (!keepAlive) {
             f.addListener(ChannelFutureListener.CLOSE);
         }

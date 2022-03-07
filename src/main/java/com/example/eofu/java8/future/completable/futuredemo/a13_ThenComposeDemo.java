@@ -12,12 +12,11 @@ public class a13_ThenComposeDemo {
     public static void main(String[] args) throws InterruptedException, TimeoutException, ExecutionException {
         CompletableFuture<String> f = CompletableFuture.completedFuture("the first task");
         ExecutorService executor = Executors.newSingleThreadExecutor();
-        CompletableFuture<String> future = CompletableFuture
-                .supplyAsync(() -> "the second task", executor)
-                .thenComposeAsync(data -> {
-                    System.out.println(data);
-                    return f;
-                }, executor);
+        CompletableFuture<String> future = CompletableFuture.supplyAsync(() -> "the second task", executor)
+                                                            .thenComposeAsync(data -> {
+                                                                System.out.println(data);
+                                                                return f;
+                                                            }, executor);
         System.out.println(future.join());
         executor.shutdown();
     }

@@ -28,6 +28,6 @@ public class WebSocketChildChannelHandler extends ChannelInitializer<SocketChann
         // 方便大文件传输，不过实质上都是短的文本数据
         ch.pipeline().addLast("http-chunked", new ChunkedWriteHandler());
         ch.pipeline().addLast("http-handler", httpRequestHandler);
-        ch.pipeline().addLast("websocket-handler", httpRequestHandler);
+        ch.pipeline().addLast("websocket-handler", channelHandler);
     }
 }

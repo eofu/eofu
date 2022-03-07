@@ -9,27 +9,27 @@ import java.util.concurrent.TimeoutException;
  */
 public class a07_WhenCompleteDemo {
     public static void main(String[] args) throws InterruptedException, TimeoutException, ExecutionException {
-        CompletableFuture<String> firstFuture = CompletableFuture.supplyAsync(
-                () -> {
-                    System.out.println("the first one task!" + Thread.currentThread().getName());
-                    try {
-                        Thread.sleep(2000L);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                    return "hello world";
-                }
-        );
-
+        CompletableFuture<String> firstFuture = CompletableFuture.supplyAsync(() -> {
+            System.out.println("the first one task!" + Thread.currentThread()
+                                                             .getName());
+            try {
+                Thread.sleep(2000L);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            return "hello world";
+        });
+        
         CompletableFuture<String> then = firstFuture.whenComplete((a, throwable) -> {
-            System.out.println("current thread name :" + Thread.currentThread().getName());
+            System.out.println("current thread name :" + Thread.currentThread()
+                                                               .getName());
             System.out.println("last task return is " + a);
             if ("hello world".equals(a)) {
                 System.out.println(a);
             }
             System.out.println("whencomplete");
         });
-
+        
         System.out.println(then.get());
     }
 }

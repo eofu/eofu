@@ -20,9 +20,10 @@ public class a12_AnyOfDemo {
         CompletableFuture<Void> b = CompletableFuture.runAsync(() -> {
             System.out.println("done Either!");
         });
-        CompletableFuture<Object> anyOfFuture = CompletableFuture.anyOf(a, b).whenComplete((m,k)->{
-            System.out.println("finish!");
-        });
+        CompletableFuture<Object> anyOfFuture = CompletableFuture.anyOf(a, b)
+                                                                 .whenComplete((m, k) -> {
+                                                                     System.out.println("finish!");
+                                                                 });
         anyOfFuture.join();
     }
 }

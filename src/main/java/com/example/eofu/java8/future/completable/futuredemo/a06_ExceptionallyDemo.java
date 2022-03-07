@@ -9,18 +9,17 @@ import java.util.concurrent.TimeoutException;
  */
 public class a06_ExceptionallyDemo {
     public static void main(String[] args) throws InterruptedException, TimeoutException, ExecutionException {
-        CompletableFuture<String> firstFuture = CompletableFuture.supplyAsync(
-                () -> {
-                    System.out.println("the first one task!" + Thread.currentThread().getName());
-                    throw new RuntimeException();
-                }
-        );
-
+        CompletableFuture<String> firstFuture = CompletableFuture.supplyAsync(() -> {
+            System.out.println("the first one task!" + Thread.currentThread()
+                                                             .getName());
+            throw new RuntimeException();
+        });
+        
         CompletableFuture<String> then = firstFuture.exceptionally((e) -> {
             e.printStackTrace();
             return "u r b exception!";
         });
-
+        
         System.out.println(then.get());
     }
 }

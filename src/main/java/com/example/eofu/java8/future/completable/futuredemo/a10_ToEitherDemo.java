@@ -31,7 +31,7 @@ public class a10_ToEitherDemo {
                 }, executor)
                 // 第三个任务
                 .acceptEitherAsync(firstFuture, System.out::println, executor);
-
+        
         executor.shutdown();
     }
 }

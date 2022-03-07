@@ -2,6 +2,9 @@ package com.example.eofu.java8.future.completable.futuredemo;
 
 import java.util.concurrent.*;
 
+/**
+ * 与supplyAsync()不同的是，runAsync()传入的任务要求是Runnable类型的，所以没有返回值。
+ */
 public class a02_RunAsyncDemo {
     public static void main(String[] args) throws InterruptedException, TimeoutException, ExecutionException {
         // 自定义线程池

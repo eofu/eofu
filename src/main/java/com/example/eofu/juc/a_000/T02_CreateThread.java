@@ -7,23 +7,23 @@ package com.example.eofu.juc.a_000;
 3、Executors.newCachedThread()
  */
 public class T02_CreateThread {
-	static class MyThread extends Thread{
-		@Override
-		public void run() {
-			System.out.println("thread");
-		}
-	}
-
-	static class MyRun implements Runnable{
-		@Override
-		public void run() {
-			System.out.println("Run");
-		}
-	}
-
-	public static void main(String[] args) {
-		new MyThread().start();
-		new Thread(new MyRun()).start();
-		new Thread(() -> System.out.println("lambda")).start();
-	}
+    public static void main(String[] args) {
+        new MyThread().start();
+        new Thread(new MyRun()).start();
+        new Thread(() -> System.out.println("lambda")).start();
+    }
+    
+    static class MyThread extends Thread {
+        @Override
+        public void run() {
+            System.out.println("thread");
+        }
+    }
+    
+    static class MyRun implements Runnable {
+        @Override
+        public void run() {
+            System.out.println("Run");
+        }
+    }
 }

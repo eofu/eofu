@@ -9,22 +9,27 @@ import java.util.concurrent.*;
 public class a09_ThenCombineDemo {
     public static void main(String[] args) throws InterruptedException, TimeoutException, ExecutionException {
         CompletableFuture<String> firstFuture = CompletableFuture.completedFuture("the first one Asyn task!");
+        
         ExecutorService executor = Executors.newFixedThreadPool(10);
-        CompletableFuture<String> combineAsync = CompletableFuture.supplyAsync(() -> "the second task!", executor).thenCombineAsync(firstFuture, (s, w) -> {
-            System.out.println(w);
-            System.out.println(s);
-            return "two Async task combine";
-        }, executor);
-        CompletableFuture<Void> thenAsync = CompletableFuture.supplyAsync(() -> "the second task!", executor).thenAcceptBoth(firstFuture, (s, w) -> {
-            if (w.equals("1")) {
-                System.out.println(1);
-            }
-            if (s.equals("2")) {
-                System.out.println(2);
-            }
-        });
+        CompletableFuture<String> combineAsync = CompletableFuture.supplyAsync(() -> "the second task!", executor)
+                                                                  .thenCombineAsync(firstFuture, (s, w) -> {
+                                                                      System.out.println(w);
+                                                                      System.out.println(s);
+                                                                      return "two Async task combine";
+                                                                  }, executor);
+        CompletableFuture<Void> thenAsync = CompletableFuture.supplyAsync(() -> "the second task!", executor)
+                                                             .thenAcceptBoth(firstFuture, (s, w) -> {
+                                                                 if ("1".equals(w)) {
+                                                                     System.out.println(111111);
+                                                                 }
+                                                                 if ("2".equals(s)) {
+                                                                     System.out.println(222222);
+                                                                 }
+                                                             });
         String s = combineAsync.get();
         System.out.println(s);
+        
+        thenAsync.get();
         executor.shutdown();
     }
 }

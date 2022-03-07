@@ -9,18 +9,17 @@ import java.util.concurrent.TimeoutException;
  */
 public class a08_HandleDemo {
     public static void main(String[] args) throws InterruptedException, TimeoutException, ExecutionException {
-        CompletableFuture<String> firstFuture = CompletableFuture.supplyAsync(
-                () -> {
-                    System.out.println("the first one task!" + Thread.currentThread().getName());
-                    try {
-                        Thread.sleep(2000L);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                    return "hello world";
-                }
-        );
-
+        CompletableFuture<String> firstFuture = CompletableFuture.supplyAsync(() -> {
+            System.out.println("the first one task!" + Thread.currentThread()
+                                                             .getName());
+            try {
+                Thread.sleep(2000L);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            return "hello world";
+        });
+        
         CompletableFuture<String> then = firstFuture.handle((a, throwable) -> {
             System.out.println("last task return is " + a);
             if ("hello world".equals(a)) {
@@ -30,7 +29,7 @@ public class a08_HandleDemo {
             System.out.println("whencomplete");
             return null;
         });
-
+        
         System.out.println(then.get());
     }
 }
