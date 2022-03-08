@@ -7,7 +7,6 @@ public class Data_Future<T> {
     public synchronized T getRealData() {
         while (!isOK) {
             try {
-                // ����δ׼������ȴ�
                 wait();
             } catch (Exception e) {
                 e.printStackTrace();

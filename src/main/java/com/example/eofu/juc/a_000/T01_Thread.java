@@ -2,6 +2,9 @@ package com.example.eofu.juc.a_000;
 
 import java.util.concurrent.TimeUnit;
 
+/**
+ * @author yangshuai
+ */
 public class T01_Thread {
     public static void main(String[] args) {
         // new T1().start();
