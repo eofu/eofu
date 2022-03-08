@@ -2,14 +2,16 @@ package com.example.eofu.juc.a_000;
 
 /**
  * Java线程状态
- * 1、新建状态：new Thread()
- * 2、就绪状态（可执行状态）：thread.start()
- * 3、运行状态：获取CPU权限
- * 4、阻塞状态：放弃CPU使用权
- * 等待阻塞：wait
- * 同步阻塞：synchronized
- * 其他阻塞：sleep，join
- * 5、死亡状态：完成或异常退出run()
+ * 1、NEW：线程刚刚创建还没有启动。new Thread()
+ * 2、RUNNABLE：可以运行状态，由线程调度器可以安排执行。thread.start()
+ * 3、WAITING：等待被唤醒。
+ * 4、TIMED_WAITING:隔一段时间后自动唤醒。
+ * 4、BLOCKED：被阻塞，正在等待锁。
+ *      等待阻塞：wait
+ *      同步阻塞：synchronized
+ *      其他阻塞：sleep，join
+ *
+ * 5、TERMINATED：线程结束。
  */
 public class T04_ThreadState {
     public static void main(String[] args) throws InterruptedException {
