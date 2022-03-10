@@ -9,23 +9,21 @@ public class M02_FutureTest {
         long start = System.currentTimeMillis();
         ExecutorService executorService = Executors.newCachedThreadPool();
         List<Future<Integer>> futureList = new ArrayList<>();
-
-        // ����1000��1��1�ڵĺ�
+    
         for (int i = 0; i < 1000; i++) {
-            // ����ִ��
             futureList.add(executorService.submit(new Calc()));
         }
-        System.out.println("��ʱ: " + (System.currentTimeMillis() - start));
+        System.out.println((System.currentTimeMillis() - start));
 
         for (int i = 0; i < 1000; i++) {
             try {
                 Integer result = futureList.get(i).get();
-                System.out.println("��" + i + "�����: " + result);
+                System.out.println(i + result);
             } catch (InterruptedException | ExecutionException e) {
                 e.printStackTrace();
             }
         }
-        System.out.println("��ʱ: " + (System.currentTimeMillis() - start));
+        System.out.println((System.currentTimeMillis() - start));
     }
 
     public static class Calc implements Callable<Integer> {

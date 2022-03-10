@@ -5,10 +5,10 @@ import java.util.Arrays;
 public class Binary {
     public static void main(String[] args) {
         System.out.println(division(19, 4));
-
+    
         System.out.println(addition("001", "001"));
     }
-
+    
     /**
      * 问题：给定两个整数 a 和 b ，求它们的除法的商 a/b ，要求不得使用乘号 '*'、除号 '/' 以及求余符号 '%' 。
      * 整数除法的结果应当截去（truncate）其小数部分，例如：truncate(8.345) = 8 以及 truncate(-2.7335) = -2
@@ -18,7 +18,7 @@ public class Binary {
         if (a == 0) {
             return 0;
         }
-
+    
         boolean negative;
         negative = (a ^ b) < 0;
         int t = Math.abs(a);
@@ -30,13 +30,12 @@ public class Binary {
                 t -= d << i;
             }
         }
-
+    
         return negative ? -result : result;
     }
-
+    
     /**
      * 给定两个 01 字符串 a 和 b ，请计算它们的和，并以二进制字符串的形式输出。
-     *
      * 输入为 非空 字符串且只包含数字 1 和 0。
      */
     public static String addition(String a, String b) {
@@ -61,14 +60,14 @@ public class Binary {
                     carryBit = false;
                 }
             }
-
+    
             if (i == length - 1) {
                 if (carryBit) {
                     sumChar[length] = '1';
                 }
             }
         }
-
+    
         return Arrays.toString(sumChar).replaceAll(",", "");
     }
 }

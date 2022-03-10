@@ -9,21 +9,20 @@ public class M01_FutureTest {
         long start = System.currentTimeMillis();
         List<Integer> retList = new ArrayList<>();
 
-        // ����1000��1��1�ڵĺ�
         for (int i = 0; i < 1000; i++) {
             retList.add(Calc.cal(100000000));
         }
-        System.out.println("��ʱ: " + (System.currentTimeMillis() - start));
+        System.out.println((System.currentTimeMillis() - start));
 
         for (int i = 0; i < 1000; i++) {
             try {
                 Integer result = retList.get(i);
-                System.out.println("��" + i + "�����: " + result);
+                System.out.println(i + result);
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
-        System.out.println("��ʱ: " + (System.currentTimeMillis() - start));
+        System.out.println((System.currentTimeMillis() - start));
     }
 
     public static class Calc implements Callable<Integer> {

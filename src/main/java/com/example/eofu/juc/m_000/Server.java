@@ -11,9 +11,9 @@ public class Server {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            data.setRealData("��������");
+            data.setRealData("");
         });
         return data;
-
+    
     }
 }

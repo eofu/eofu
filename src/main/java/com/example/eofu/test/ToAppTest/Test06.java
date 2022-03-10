@@ -21,10 +21,7 @@ public class Test06 {
     public static void main(String[] args) throws InvalidAlgorithmParameterException, NoSuchPaddingException, UnsupportedEncodingException, IllegalBlockSizeException, NoSuchAlgorithmException, BadPaddingException, InvalidKeyException {
         Test06 test01 = new Test06();
         
-        String param = "{\n" +
-                "    \"bidId\": \"1644808621222002\",\n" +
-                "    \"businessType\": \"ZFCG\"\n" +
-                "}";
+        String param = "{\n" + "    \"bidId\": \"1645084117081004\",\n" + "    \"businessType\": \"ZFCG\"\n" + "}";
         String number = "BUS00021";
         
         
@@ -48,8 +45,9 @@ public class Test06 {
         map.put("sign", sign);
         map.put("paramData", paramData);
         map.put("businessType", "APP_TO_TRADDING");
-        String result = HttpClientUtil.doPost("http://192.168.10.190:30413/app", map);
-        String s = EncryptUtils.decryptGeneralAES(result, AppConstance.APP_REQUEST_ASE_KEY, AppConstance.IV_STRING);
-        System.out.println("result: " + s);
+        // System.out.println(map);
+        String result = HttpClientUtil.doPost("http://192.168.1.63:9527/app", map);
+        // String s = EncryptUtils.decryptGeneralAES(result, AppConstance.APP_REQUEST_ASE_KEY, AppConstance.IV_STRING);
+        // System.out.println("result: " + s);
     }
 }

@@ -10,12 +10,14 @@ public class NoRepeatArray {
     static List<List<Integer>> res = new LinkedList<>();
     
     public static void main(String[] args) {
-        int[] i = {1, 2, 3};
+        int[] i = {1, 2, 3, 4, 5, 6, 7, 8, 9};
+        long start = System.currentTimeMillis();
         List<List<Integer>> permute = permute(i);
         System.out.println(permute.size());
         for (List<Integer> integers : permute) {
             System.out.println(integers);
         }
+        System.out.println(System.currentTimeMillis() - start);
     }
     
     /**
