@@ -5,7 +5,7 @@ import java.util.concurrent.*;
 public class RefuseTest implements RejectedExecutionHandler {
     public static void main(String[] args) {
         ThreadPoolExecutor threadpool = new ThreadPoolExecutor(3, 5, 5, TimeUnit.SECONDS, new ArrayBlockingQueue<>(5));
-        
+        new org.apache.tomcat.util.threads.ThreadPoolExecutor()
     }
     
     public void refuse1AbortPolicy() {

@@ -4,6 +4,7 @@ import java.util.Random;
 
 /**
  * 抽象化的修正类
+ * @author yangs
  */
 public abstract class RefinedCoffee extends Coffee {
     public RefinedCoffee(ICoffeeAdditives additives) {
