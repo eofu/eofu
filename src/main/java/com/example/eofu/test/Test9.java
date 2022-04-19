@@ -1,8 +1,11 @@
 package com.example.eofu.test;
 
+import java.util.Date;
+
 public class Test9 {
     public static void main(String[] args) {
-        String str = "asdfasefasdfasdfasfdasdfa";
-        System.out.println(str.hashCode());
+       System.out.println(new Date().getDate());
+
+        System.out.println(1%3);
     }
 }
