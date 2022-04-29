@@ -2,6 +2,7 @@ package com.example.eofu.pattern.behavioral.behavioral4observer.observer;
 
 /**
  * 具体观察者
+ * @author yangs
  */
 public class ConcreteObserver implements Observer{
     @Override

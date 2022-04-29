@@ -15,7 +15,10 @@ public class a11_AllOfDemo {
         CompletableFuture<Void> b = CompletableFuture.runAsync(() -> {
             System.out.println("done Either!");
         });
-        CompletableFuture<Void> allOfFuture = CompletableFuture.allOf(a, b).whenComplete((m,k)->{
+        CompletableFuture<Void> c = CompletableFuture.runAsync(() -> {
+            System.out.println("done Either!");
+        });
+        CompletableFuture<Void> allOfFuture = CompletableFuture.allOf(a, b, c).whenComplete((m, k) -> {
             System.out.println("finish!");
         });
     }

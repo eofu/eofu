@@ -4,15 +4,15 @@ import com.example.eofu.pattern.behavioral.behavioral1strategy.pay.payport.PayTy
 public class Order {
     private final String orderId;
     private final String userId;
-    private final Double amout;
+    private final Double amount;
 
     public Order(String orderId, String userId, Double amout) {
         this.orderId = orderId;
         this.userId = userId;
-        this.amout = amout;
+        this.amount = amout;
     }
 
     public PayState pay(PayTypeEnum payTypeEnum) {
-        return payTypeEnum.getPayMent().pay(this.userId, this.amout);
+        return payTypeEnum.getPayMent().pay(this.userId, this.amount);
     }
 }

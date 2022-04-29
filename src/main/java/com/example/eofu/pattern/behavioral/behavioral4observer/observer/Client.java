@@ -2,6 +2,7 @@ package com.example.eofu.pattern.behavioral.behavioral4observer.observer;
 
 /**
  *
+ * @author yangs
  */
 public class Client {
     public static void main(String[] args) {

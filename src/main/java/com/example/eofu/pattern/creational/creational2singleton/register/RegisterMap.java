@@ -5,9 +5,11 @@ import java.util.HashMap;
 /**
  * 注册登记式：将对象存入缓存
  * IOC中的单例模式就是登记注册式
+ *
+ * @author yangs
  */
 public class RegisterMap {
-    private static final HashMap register = new HashMap<String, Object>();
+    private static final HashMap<String, Object> REGISTER = new HashMap<>();
 
     private RegisterMap() {
 
@@ -18,10 +20,10 @@ public class RegisterMap {
             name = RegisterMap.class.getName();
         }
 
-        if (register.get(name) == null) {
-            register.put(name, new RegisterMap());
+        if (REGISTER.get(name) == null) {
+            REGISTER.put(name, new RegisterMap());
         }
 
-        return (RegisterMap) register.get(name);
+        return (RegisterMap) REGISTER.get(name);
     }
 }

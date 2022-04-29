@@ -42,4 +42,7 @@ public class QyInfo {
     private String tbbj;
     private java.sql.Timestamp sjc;
     private long nwxclss;
+    private String cityName;
+    private String areaName;
+    private String proName;
 }

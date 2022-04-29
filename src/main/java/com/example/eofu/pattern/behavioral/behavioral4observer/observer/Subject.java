@@ -4,6 +4,7 @@ import java.util.Vector;
 
 /**
  * 主题
+ * @author yangs
  */
 public class Subject {
     private final Vector<Observer> oVector = new Vector<>();

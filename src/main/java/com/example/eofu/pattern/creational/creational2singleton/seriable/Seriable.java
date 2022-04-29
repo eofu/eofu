@@ -1,5 +1,6 @@
 package com.example.eofu.pattern.creational.creational2singleton.seriable;
 
+import java.io.Serial;
 import java.io.Serializable;
 
 /**
@@ -17,6 +18,7 @@ public class Seriable implements Serializable {
     }
 
     // 重新方法保障线程安全
+    @Serial
     private Object readResolve() {
         return SERIABLE;
     }
